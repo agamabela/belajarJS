@@ -1,0 +1,70 @@
+
+    <script>
+        //objek
+        let produk = [
+            {nama: 'Oreo', stok: '50', price:'9000'},
+            {nama: 'Milo', stok: '60', price:'5000'},
+            {nama: 'Kitkat', stok: '31', price:'7000'},
+        ]
+        //array
+        let produkArr = [
+            ['Oreo', '50', '9000'],
+            ['Milo', '60', '5000'],
+            ['Kitkat', '31', '7000'],
+        ]
+
+        function printList(){
+            let list = ''
+            produk.forEach((value, index)=> {
+                list+= `${index+1}. ${value.nama} Stock = ${value.stok} Rp. ${value.price.toLocaleString()} \n ` 
+            })
+            return list
+        }
+        alert(printList())
+    
+
+    function printListMap(){
+    let listMap= produk.map((value, index)=>{
+        return `${index+1}. ${value.nama} Stock = ${value.stok} Rp${value.price.toLocaleString()}`
+    })
+    return listMap
+    
+    }
+    // console.log(printListMap())
+    // alert(printListMap().join('\n'))
+
+
+    //Tambah produk versi 1
+    
+    // let inProduct = prompt("Masukan nama: ")
+    // let inStock = parseInt(prompt("Masukan stock: "))
+    // let inPrice = parseInt(prompt("Masukan harga: "))
+
+    // produk.push({nama: inProduct, stok: inStock, price: inPrice})
+    // console.log(printList()) 
+    // alert(printList())
+
+    //versi 2
+    while(true){
+        let menu = prompt(
+            `Selamat datang di tokoku
+            1. Tambah produk
+            2. Beli produk
+            3. Cek stok`
+        )
+        if(menu == 1){
+    let nama = prompt("Masukan nama: ")
+    let stok = parseInt(prompt("Masukan stock: "))
+    let price = parseInt(prompt("Masukan harga: "))
+
+    produk.push({nama, stok, price})
+    console.log(printList()) 
+    alert(`${nama} sudah terdaftar \n ${printList()}`)
+    } else if( menu == 2){
+        let pilihProduk = parseInt(prompt(`Silahkan pilih produk \n ${printList()}`))
+        let qty = parseInt(prompt(`Beli ${produk[pilihProduk -1].nama} berapa?`))
+    } else if (menu == 3){
+        
+    }
+}
+    </script>

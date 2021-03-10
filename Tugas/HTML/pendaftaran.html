@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Siswa
+    </title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div id="body" style="width: 50vw;height: 50vw;background-color: coral;">
+            <h1>Pendaftaran Siswa</h1>
+            <form>
+                <div>
+                    <label for="nama">Nama: </label>
+                    <input type="text" id="nama" placeholder="Masukan Nama"><br>
+                </div>
+                <div>
+                    <label for="email">Email: </label>
+                    <input type="text" id="email" placeholder="Masukan Email">
+                </div>
+                <div>
+                    <label for="alamat">Alamat: </label>
+                    <textarea name="" id="alamat" cols="30" rows="10" placeholder="Masukan Alamat"></textarea>
+                </div>
+            </form>
+            <button type="button" onclick="onButtonDaftar()">Daftar</button>
+            <table>
+                <thead>
+                    <th>Nomor</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Alamat</th>
+                </thead>
+                <tbody id="list-nama">
+                    <td>1</td>
+                    <td>Frohze</td>
+                    <td>frohze@ymail.com</td>
+                    <td>Jack Art A</td>
+                </tbody>
+            </table>
+        </div>
+    </center>
+
+</body>
+<script>
+    //property (nama, email, alamat)
+    let dataSiswa = [
+
+    ]
+    function onButtonDaftar() {
+        let inNama = document.getElementById('nama').value
+        let inEmail = document.getElementById('email').value
+        let inAlamat = document.getElementById('alamat').value
+        //console.log(nama)
+        //alert(`Test input: ${nama} ${email} ${alamat}`)
+        //insert data with push
+        //dataSiswa.push({nama: inNama, email:inEmail, alamat:inAlamat})
+        //insert data with splice
+        dataSiswa.splice(dataSiswa.length, 0,{nama: inNama, email:inEmail, alamat:inAlamat})
+        //salah satu cara memasukan data
+        //dataSiswa[dataSiswa.length] = {nama: inNama, email:inEmail, alamat:inAlamat}
+        console.table(dataSiswa)
+
+        document.getElementById('nama').value=null
+        document.getElementById('email').value=null
+        document.getElementById('alamat').value=null
+        // dataSiswa.push(document.getElementById("nama")).value
+        // dataSiswa.push(document.getElementById("email")).value
+        // dataSiswa.push(document.getElementById("alamat")).value
+        // console.log(dataSiswa)
+        printData()
+    }
+    function printData(){
+        let htmlList = ''
+        dataSiswa.forEach((value, index)=>{
+            htmlList+=`<tr>
+                <td>${index+1}</td>
+                <td>${value.nama}</td>
+                <td>${value.email}</td>
+                <td>${value.alamat}</td>
+                </tr>
+            `
+        })
+        console.log(htmlList)
+        //innerHTML digunakan untuk memasukan value di html
+        document.getElementById('list-nama').innerHTML = htmlList
+    }
+
+</script>
+
+</html>

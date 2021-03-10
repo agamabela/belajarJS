@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengiriman Paket</title>
+</head>
+
+<body>
+    <center>
+        <div id="body" style="width: 50vw;height: 50vw;">
+            <h1>Pemilihan Paket</h1>
+            <form>
+                <table>
+                    <div>
+                        <tr>
+                            <td><label for="nama">Nama: </label></td>
+                            <td><input type="text" id="nama"><br></td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td> <label for="harga">Price: </label></td>
+                            <td> <input type="text" id="harga"></td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td><label for="kond">Condition: </label> </td>
+                            <td><input type="radio" id="new" name="kond" value="New">
+                                <label for="male">New</label>
+                                <input type="radio" id="second" name="kond" value="Second">
+                                <label for="female">Second</label><br>
+                            </td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td><label for="cars">Warehouse:</label></td>
+                            <td>
+                                <select name="ware" id="ware">
+                                    <option value="Jakarta">JKT</option>
+                                    <option value="Bandung">BDG</option>
+                                    <option value="Surabaya">SBY</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </div>
+                    <div>
+                        <tr>
+                            <td><label for="cour">Courier: </label></td>
+                            <td>
+
+                                <input type="checkbox" name="check" id="jne">
+                                <label for="JNE">JNE</label>
+                                <input type="checkbox" name="check" id="jnt">
+                                <label for="JNT">JNT</label>
+                                <input type="checkbox" name="check" id="ninja">
+                                <label for="ninja">Ninja Express</label>
+                            </td>
+                        </tr>
+                    </div>
+
+                </table>
+            </form>
+            <button type="button" onclick="onButtonDaftar()">Daftar</button>
+            <div>
+                <h2>Result:</h2>
+            </div>
+            <div>
+                <table>
+                    <td>
+                        <tbody id="list-hasil">
+                    </td>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+    </center>
+</body>
+<script>
+    let dataPenjualan = []
+
+
+
+    function onButtonDaftar() {
+        let inNama = document.getElementById('nama').value
+        let inHarga = document.getElementById('harga').value
+        let inKondisi = ""
+        if (document.getElementById("new").checked == true) {
+            inKondisi = document.getElementById("new").value
+        } else{
+            inKondisi = document.getElementById("second").value
+        }
+        let inWare = document.getElementById('ware').value
+        let inCour = ""
+        let chks = document.getElementsByName("check")
+        for (var i = 0; i < chks.length; i++) {
+            if (chks[i].checked) {
+                inCour = chks[i].value
+            }
+        }
+
+        dataPenjualan.push({ nama: inNama, harga: inHarga, kond: inKondisi, ware: inWare, check: inCour })
+        printData()
+        console.log(inKondisi)
+        console.log(inCour)
+        console.log(dataPenjualan)
+    }
+
+    function printData() {
+        let letList = ''
+        dataPenjualan.forEach((value, index) => {
+            letList += `<tr>
+                <td>${index + 1}</td>
+                <tr>Name :${value.nama}</tr>
+                <tr>Harga: ${value.harga}</tr>  
+                <tr>Kondisi: ${value.kond}</tr>
+                <tr>Gudang: ${value.ware}</tr>
+        <tr>Kurir: ${value.check}</tr>
+            `
+        })
+        document.getElementById('list-hasil').innerHTML = letList
+    }
+</script>
+
+</html>

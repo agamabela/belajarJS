@@ -1,0 +1,70 @@
+    <script>
+        alert("Silahkan pilih penjumlahan, pengurangan, perkalian, atau pembagian")
+        let input = parseInt(prompt("Masukan angka 1. Perkalian 2. Pembagian 3. Penambahan 4. Pengurangan"))
+        switch (input) {
+            case 1:
+                while (true) {
+                    alert("Selamat datang di perkalian")
+        let angka1 = parseInt(prompt("Angka 1 perkalian"))
+        let angka2 = parseInt(prompt("Angka 2 perkalian"))
+        
+        let perkalian = angka1 * angka2
+        alert(`Hasil perkalian ${angka1} * ${angka2} = ${perkalian}`)
+        let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break;
+            }
+                }
+                break;
+
+            case 2:
+                while(true){
+                    alert("Selamat datang di pembagian")
+                    let angka3 = parseInt(prompt("Angka 1 pembagian"))
+                    let angka4 = parseInt(prompt("Angka 2 pembagian"))
+
+                    let pembagian = angka3/angka4
+                    alert(`Hasil pembagian ${angka3} : ${angka4} = ${pembagian}`)
+                    let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+                }   
+                break;  
+
+                case 3: 
+                while(true){
+                alert("Selamat datang di penjumlahan")
+                let angka5 = parseInt(prompt("Angka 1 penjumlahan"))
+                let angka6 = parseInt(prompt("Angka 2 penjumlahan"))
+
+                let penjumlahan = angka5+angka6
+                alert(`Hasil penjumlahan ${angka5} + ${angka6} = ${penjumlahan}`)
+                let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+                }
+                break;
+
+                case 4:
+                    while(true){
+                        alert("Selamat datang di pengurangan")
+                let angka7 = parseInt(prompt("Angka 1 pengurangan"))
+                let angka8 = parseInt(prompt("Angka 2 pengurangan"))
+
+                let pengurangan = angka7-angka8
+                alert(`Hasil penjumlahan ${angka7} - ${angka8} = ${pengurangan}`)
+                let lanjut = confirm('Mau lanjut belajar?')
+        
+                if(lanjut == false){
+                break
+            }
+                }
+                break;
+                
+
+            default:
+                break;
+        }
+    </script>

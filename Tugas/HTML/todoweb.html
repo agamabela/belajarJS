@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do Web</title>
+    <style>
+        .container {
+            width: 70%;
+            height: 50vh;
+            border: 1px solid black;
+            margin: 10vh auto;
+        }
+
+        input {
+            border-radius: 20vh;
+            margin-right: 8%;
+        }
+
+        th,
+        table,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;">TO DO WEB</h3>
+        <fieldset>
+            <legend>Form To Do</legend>
+            <form>
+                <label>Date: </label>
+                <input type="date" name="tanggal" id="waktu">
+                <label>Do: </label>
+                <input type="text" name="teks" id="kegiatan">
+                <label>Location: </label>
+                <input type="text" name="teks2" id="location">
+                <input type="button" value="Add" onclick="submitAdd()">
+            </form>
+        </fieldset>
+        <table style="margin: auto;">
+            <thead>
+                <th style="width: 80px;">No</th>
+                <th style="width: 80px;">Date</th>
+                <th style="width: 150px;">Do</th>
+                <th style="width: 300px;">Location</th>
+                <th style="width: 150px;">Action</th>
+
+            </thead>
+            <tbody id="list-todo">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    let dataHari = []
+
+    class toDo {
+        constructor(_date, _do, _location) {
+            this.date = _date
+            this.do = _do
+            this.location = _location
+        }
+    }
+    function submitAdd(){
+        console.log("Masuk Submit")
+        //ambil value dari input form
+        let waktu = document.getElementById("waktu").value
+        let kegiatan = document.getElementById("kegiatan").value
+        let lokasi = document.getElementById("location").value
+
+        //ditambahkan ke dalam variabel data mengunakan push
+        //class to Do bertindak sebagai cetakan object data
+        dataHari.push(new toDo(waktu, kegiatan, lokasi))
+        console.log(dataHari)
+        console.log(waktu)
+        printToDo()
+        document.getElementById("waktu").value = null
+        document.getElementById("kegiatan").value = null
+        document.getElementById("location").value=null      
+    }
+    console.log(dataHari)
+
+    function printToDo(index=null){
+        let htmlElement = dataHari.map((item, idx)=>{
+            if(index == idx){
+            return `<tr>
+                <td>${idx+1}</td>
+                <td><input type="date" id="newWaktu" value="${item.date}"></td>
+                <td><input type="text" id="newKegiatan" value="${item.do}"></td>
+                <td><input type="text" id="newLokasi" value="${item.location}"></td>
+                <td><input type="button" value="save" onclick="onBtnSave(${index})"> <input type="button" value="cancel" id="hapus" onclick="onBtnCancel(${index})"></td>
+                </tr>
+            
+            `
+            } else{
+                return `<tr>
+                <td>${idx+1}</td>
+                <td>${item.date}</td>
+                <td>${item.do}</td>
+                <td><img src="${item.location}" alt="lokasi" width="80%"></td>
+                <td><input type="button" value="edit" onclick="onBtnEdit(${idx})"> <input type="button" value="delete" id="hapus" onclick="onBtnDelete(${idx})"></td>
+                </tr>
+            
+            `
+            }
+        })
+        document.getElementById("list-todo").innerHTML = htmlElement.join('')
+    }
+
+    function onBtnDelete(index){
+        dataHari.splice(index, 1)
+        printToDo()
+    }
+
+    function onBtnEdit(index){
+        printToDo(index)
+    }
+
+    //update form cara 1
+
+    // function onBtnEdit(index){
+    //     let newWaktu = prompt("tanggal baru", dataHari[index].date)
+    //     let newKegiatan = prompt("kegiatan baru", dataHari[index].do)
+    //     let newLokasi = prompt("lokasi baru", dataHari[index].location)
+
+    //     if(confirm('mau simpan?')){
+    //         dataHari[index].date = newWaktu
+    //         dataHari[index].do = newKegiatan
+    //         dataHari[index].location = newLokasi
+    //         printToDo()
+    //         alert('perubahan telah disimpan')
+    //     }
+
+    function onBtnSave(index){
+        if(confirm('mau simpan?')){
+            dataHari[index].date = document.getElementById("newWaktu").value
+            dataHari[index].location = document.getElementById("newLokasi").value
+            dataHari[index].do = document.getElementById("newKegiatan").value
+           
+           printToDo()
+        }
+        console.log(dataHari)
+    }
+    
+    function onBtnCancel(index){
+        dataHari[index].do
+        dataHari[index].location
+        dataHari[index].date
+        printToDo()
+    }
+    
+
+printToDo()
+</script>
+
+</html>

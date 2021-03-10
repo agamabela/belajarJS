@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market 2.0</title>
+    <style>
+        table.GeneratedTable {
+            width: 100%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #ffcc00;
+            border-style: solid;
+            color: #000000;
+        }
+
+        table.GeneratedTable td,
+        table.GeneratedTable th {
+            border-width: 2px;
+            border-color: #ffcc00;
+            border-style: solid;
+            padding: 3px;
+        }
+
+        table.GeneratedTable thead {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <h1>Market V2.0</h1>
+            <fieldset>
+                <legend>Filter Produk</legend>
+                <form action="">
+                    <tr>
+                        <label for="filter-nama">Nama</label>
+                        <td><input type="text" name="filterNama" id="filter-nama" placeholder="Masukan Nama"></td>
+                        <span>
+                            <label>Harga</label>
+                            <td><input type="text" name="hargaMin" id="filter-harga-min" placeholder="Minimum"></td>
+                            <td><input type="text" name="hargaMax" id="filter-harga-max" placeholder="Maksimum"></td>
+                        </span>
+                        <select name="filterKategori" id="filter-kategori">
+                            <option value="Fast Food">Pakaian</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Cloth">Cloth</option>
+                            <option value="Fruit">Fruit</option>
+                        </select>
+                        <button type="button" onclick="printJual()">Reset</button>
+                        <button type="button" onclick="onBtnFilter()">Filter</button>
+                    </tr>
+                </form>
+
+            </fieldset>
+            <fieldset>
+                <legend>Input Data</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="nama" id="nama" placeholder="Nama"></td>
+                            <td><input type="text" name="harga" id="harga" placeholder="Harga"></td>
+                            <td><select name="kategori" id="kategori">
+                                    <option value="" disabled selected>All</option>
+                                    <option value="FastFood">Fast Food</option>
+                                    <option value="Electronic">Electronic</option>
+                                    <option value="Fruit">Fruit</option>
+                                    <option value="Cloth">Cloth</option>
+                                </select></td>
+                            <td><input type="text" name="stok" id="stock" placeholder="Stock"></td>
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <td><button type="button" onclick="submitData()">Input</button></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>Tabel Data</legend>
+                <table class="GeneratedTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Kategori</th>
+                            <th>Nama</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hasilnya">
+
+                    </tbody>
+                </table>
+            </fieldset>
+        </center>
+    </div>
+</body>
+
+<script>
+    let dataPenjualan = []
+    let categories = [
+        {
+            name: 'All',
+            value: ''
+        },
+        {
+            name: 'Fast Food',
+            value: 'FastFood'
+        },
+        {
+            name: 'Electronic',
+            value: 'Electronic'
+        },
+        {
+            name: 'Fruit',
+            value: 'Fruit'
+        },
+        {
+            name: 'Cloth',
+            value: 'Cloth'
+        },
+    ]
+    var options = ''
+    categories.forEach(category => {
+        options += `<option value="${category.value}">${category.name}</option>`
+    })
+    document.getElementById('kategori').innerHTML = options
+    class toDo {
+        constructor(_id, _kategori, _nama, _harga, _stock) {
+            this.id = _id
+            this.kategori = _kategori
+            this.nama = _nama
+            this.harga = _harga
+            this.stock = _stock
+            // this.id=_id
+        }
+    }
+    function submitData() {
+        let kategori = document.getElementById("kategori").value
+        let nama = document.getElementById("nama").value
+        let harga = document.getElementById("harga").value
+        let stock = document.getElementById("stock").value
+        dataPenjualan.push(new toDo(randomGen(6), kategori, nama, harga, stock))
+        printJual()
+        document.getElementById("kategori").value = null
+        document.getElementById("nama").value = null
+        document.getElementById("harga").value = null
+        document.getElementById("stock").value = null
+    }
+    function printJual(index, dataPenjualanProduk = dataPenjualan) {
+        let htmlElement = dataPenjualanProduk.map((item, idx) => {
+            var opt = ''
+            categories.forEach(category => {
+                opt += `<option value="${category.value}" ${category.name == item.kategori ? 'selected' : ''}>${category.name}</option>`
+            })
+            if (index == idx) {
+                return `<tr>
+                <td>${idx + 1}</td>
+                <td>${item.id}</td>
+                
+                <td>
+                    <select id="newKategori" value="${item.kategori}"> 
+                    ${opt}
+                    </select></td>
+                <td><input type="text" id="newNama" value="${item.nama}"></td>
+                <td><input type="text" id="newHarga" value="${item.harga}"></td>
+                <td><input type="text" id="newStock" value="${item.stock}"></td>
+                <td><input type="button" value="save" onclick="onBtnSave(${index})"> <input type="button" value="cancel" id="hapus" onclick="onBtnCancel(${index})"></td>
+                </tr>
+            
+            `
+            } else {
+                return `<tr>
+                <td>${idx + 1}</td>
+                <td>${item.id}</td>
+               
+                <td>${item.kategori}</td>
+                <td>${item.nama}</td>
+                <td>${item.harga}</td>
+                <td>${item.stock}</td>
+                <td><input type="button" value="edit" onclick="onBtnEdit(${idx})"> <input type="button" value="delete" id="hapus" onclick="onBtnDelete(${idx})"></td>
+                </tr>
+            
+            `
+            }
+        })
+        document.getElementById("hasilnya").innerHTML = htmlElement.join('')
+    }
+    function onBtnDelete(index) {
+        dataPenjualan.splice(index, 1)
+        printJual()
+    }
+
+    function onBtnEdit(index) {
+        printJual(index)
+    }
+    function onBtnSave(index) {
+        if (confirm('mau simpan?')) {
+            dataPenjualan[index].kategori = document.getElementById("newKategori").value
+            dataPenjualan[index].nama = document.getElementById("newNama").value
+            dataPenjualan[index].harga = document.getElementById("newHarga").value
+            dataPenjualan[index].stock = document.getElementById("newStock").value
+
+            printJual()
+        }
+        console.log(dataPenjualan)
+    }
+
+    function onBtnCancel(index) {
+        dataPenjualan[index].kategori
+        dataPenjualan[index].nama
+        dataPenjualan[index].harga
+        dataPenjualan[index].stock
+        printJual()
+    }
+    function randomGen(len) {
+        let ran = ""
+
+        let charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (let i = 0; i < len; i++)
+            ran += charset.charAt(Math.floor(Math.random() * charset.length))
+
+        return ran
+    }
+    console.log(randomGen(6))
+
+    // function GenerateOption (value) {
+    //         let options = ['one', 'two', 'three', 'four', 'five']
+    //         return options.map(item => {
+    //             if (item === value) {
+    //                 return `<option selected>${item}</option>`
+    //             } else {
+    //                 return `<option>${item}</option>`
+    //             }
+    //         })
+    //     }
+
+    
+    //filter data
+    onBtnFilter = () => {
+        let filterNama = document.getElementById("filter-nama").value
+        let filterHargaMa = parseInt(document.getElementById("filter-harga-max").value)
+        let filterHargaMi = parseInt(document.getElementById("filter-harga-min").value)
+        let filterKategori = document.getElementById("filter-kategori").value
+       // alert(filterNama)
+        let namaFilter = dataPenjualan.filter((item, index)=>{
+            //return filterNama == item.nama
+            //atau pakai includes
+            //return item.nama.includes(filterNama)
+            //atau case sensitive
+            return item.nama.toLowerCase().includes(filterNama.toLowerCase())
+            && item.harga(Math.min(filterHargaMi)) && item.harga(Math.max(filterHargaMa))
+            && item.kategori(filterKategori)
+        })
+        console.log(filterProduk)
+        printJual(null, namaFilter)
+    }
+
+    printJual()
+</script>
+
+</html>

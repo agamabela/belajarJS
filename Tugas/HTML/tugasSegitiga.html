@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Segitiga</title>
+</head>
+
+<body>
+    <center>
+        <table>
+            <thead>
+                <th><label> Nilai Baris Segitiga</label></th>
+                <th><input type="text" name="baris" id="sgtg"></th>
+                <th><input type="button" value="Masukan" onclick="masuk()"></th>
+            </thead>
+
+            </thead>
+            <tbody id="hasil">
+
+            </tbody>
+        </table>
+    </center>
+
+</body>
+<script>
+    function masuk() {
+        let sgt = ''
+        let jum = document.getElementById('sgtg').value
+        for (let i = 0; i < jum; i++) {
+            for (let j = 0; j <= i; j++) {
+                sgt += '* '
+            }
+            sgt += '<br>'
+            document.getElementById("hasil").innerHTML = sgt
+        }
+    }
+  
+</script>
+
+</html>

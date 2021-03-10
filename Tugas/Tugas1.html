@@ -1,0 +1,80 @@
+    <script>
+        //buat aplikasi 
+        alert("Silahkan pilih penjumlahan, pengurangan, perkalian, atau pembagian")
+        let pilih = parseInt(prompt("1. Penjumlahan \n 2. Pengurangan \n 3. Perkalian \n 4. Pembagian"))
+        
+        if (pilih == 1) {
+            while(true){
+        alert("Selamat datang")
+        let angka1 = parseInt(prompt("Angka 1"))
+        let angka2 = parseInt(prompt("Angka 2"))
+        
+        let penjumlahan = angka1 + angka2
+        alert(`Hasil penjumlahan ${angka1} + ${angka2} = ${penjumlahan}`)
+        
+        let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+
+        }
+        
+
+        } else if (pilih == 2) {
+            while(true){
+        alert("Selamat datang")
+        let angka3 = parseInt(prompt("Angka 1"))
+        let angka4 = parseInt(prompt("Angka 2"))
+        
+        let pengurangan = angka3 - angka4
+        alert(`Hasil pengurangan ${angka3} - ${angka4} = ${pengurangan}`)
+        
+        let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+        }
+        } else if ( pilih == 3){
+            while(true){
+        alert("Selamat datang")
+        let angka5 = parseInt(prompt("Angka 1 yang dikalikan"))
+        let angka6 = parseInt(prompt("Angka 2 yang dikalikan "))
+        
+        let perkalian = angka5 * angka6
+        alert(`Hasil pe ${angka5} + ${angka6} = ${perkalian}`)
+        
+        let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+
+
+        }
+    } else if (pilih == 4){
+        while(true){
+        alert("Selamat datang")
+        let angka7 = parseInt(prompt("Angka 1"))
+        let angka8 = parseInt(prompt("Angka 2"))
+        
+        let pembagian = angka7 / angka8
+        alert(`Hasil pembagian ${angka5} + ${angka6} = ${pembagian}`)
+        
+        let lanjut = confirm('Mau lanjut belajar?')
+            if(lanjut == false){
+                break
+            }
+
+
+        }
+    } else{
+        break
+    }
+
+        
+        
+    //buat apliaksi belajar
+    //ada menu memilih penjumlahan, pengurangan, perkalian, pembagian
+    //setiap selesai melakukan operasi hitungan, confirm mau lanjut atau tidak
+    //jika tidak, maka dia ditanyakan mau kembali ke menu utama atau tidak
+
+    </script>
