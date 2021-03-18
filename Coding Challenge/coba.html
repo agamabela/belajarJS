@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Coba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link href="/demo/styles.css" rel="stylesheet"> -->
+    <style>
+    .table {
+        border-collapse: collapse;
+    }
+    .table, .table th, .table td {
+        border: 1px solid #ccc;
+    }
+    .table th, .table td {
+        padding: 0.5rem;
+    }
+    .table th {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    </style>
+</head>
+<body class="font-sans w-full">
+    <div class="p-4">
+        <table id="sortMe" class="table">
+            <thead>
+                <!-- <tr>
+                    <th data-type="number"><button>No.</button></th>
+                </tr> -->
+            </thead>
+            <tbody>
+                <tr>
+                <td style="width: 36px;">&nbsp;1</td>
+                <td style="width: 36px;">&nbsp;2</td>
+                <td style="width: 36px;">&nbsp;3</td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                </tr>
+                <tr>
+                <td style="width: 36px;">&nbsp;4</td>
+                <td style="width: 36px;">&nbsp;5</td>
+                <td style="width: 36px;">&nbsp;6</td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                </tr>
+                <tr>
+                <td style="width: 36px;">&nbsp;7</td>
+                <td style="width: 36px;">&nbsp;8</td>
+                <td style="width: 36px;">&nbsp;9</td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                </tr>
+                <tr>
+                <td style="width: 36px;">&nbsp;10</td>
+                <td style="width: 36px;">&nbsp;11</td>
+                <td style="width: 36px;">&nbsp;12</td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                </tr>
+                <tr>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                <td style="width: 36px;" data-type="number"><button>Sort</button></td>
+                <td style="width: 36px;">&nbsp;</td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const table = document.getElementById('sortMe');
+    const headers = table.querySelectorAll('th');
+    const tableBody = table.querySelector('tbody');
+    const rows = tableBody.querySelectorAll('tr');
+
+    // Track sort directions
+    const directions = Array.from(headers).map(function(header) {
+        return '';
+    });
+
+    // Transform the content of given cell in given column
+    const transform = function(index, content) {
+        // Get the data type of column
+        const type = headers[index].getAttribute('data-type');
+        switch (type) {
+            case 'number':
+                return parseFloat(content);
+            case 'string':
+            default:
+                return content;
+        }
+    };
+
+    const sortColumn = function(index) {
+        // Get the current direction
+        const direction = directions[index] || 'asc';
+
+        // A factor based on the direction
+        const multiplier = (direction === 'asc') ? 1 : -1;
+
+        const newRows = Array.from(rows);
+
+        newRows.sort(function(rowA, rowB) {
+            const cellA = rowA.querySelectorAll('td')[index].innerHTML;
+            const cellB = rowB.querySelectorAll('td')[index].innerHTML;
+
+            const a = transform(index, cellA);
+            const b = transform(index, cellB);    
+
+            switch (true) {
+                case a > b: return 1 * multiplier;
+                case a < b: return -1 * multiplier;
+                case a === b: return 0;
+            }
+        });
+
+        // Remove old rows
+        [].forEach.call(rows, function(row) {
+            tableBody.removeChild(row);
+        });
+
+        // Reverse the direction
+        directions[index] = direction === 'asc' ? 'desc' : 'asc';
+
+        // Append new row
+        newRows.forEach(function(newRow) {
+            tableBody.appendChild(newRow);
+        });
+    };
+
+    [].forEach.call(headers, function(header, index) {
+        header.addEventListener('click', function() {
+            sortColumn(index);
+        });
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+:root{
+    --merah: rgba(255,0,0,0.4);
+    --lebar: 488px
+}
+h2{
+    color: var(--merah);
+}
+div{
+    width: var(--lebar);
+    border: 1px solid black;
+}
+/* child selector */
+div>p{
+    background-color: var(--merah);
+}
+div>p>span{
+    font-weight: bolder;
+    color: blue;
+    font-size: large;
+}
+/* id selector */
+#header{
+    margin: auto;
+    color: chartreuse;
+}
+/* class selector */
+.content{
+    margin: auto;
+    padding: 3px;
+    text-align: center;
+}
+/* pseudo-class hover */
+#header:hover{
+    text-align: center;
+    color: darkgoldenrod;
+}
+input:focus{
+    background-color: coral;
+    color: aliceblue;
+}
