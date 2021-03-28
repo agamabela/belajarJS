@@ -1,28 +1,22 @@
 {
   "tb_user": [
     {
-      "id": 1,
+      "iduser": 1,
       "username": "admin",
       "password": "1234",
       "role": "admin"
     },
     {
-      "id": 2,
-      "username": "belalabooi",
+      "iduser": 2,
+      "username": "bela",
       "password": "4567",
       "role": "user"
     },
     {
-      "username": "test",
-      "password": "apa",
-      "role": "admin",
-      "id": 3
-    },
-    {
-      "username": "apanih",
-      "password": "test",
-      "role": "admin",
-      "id": 4
+      "iduser": 3,
+      "username": "belala",
+      "password": "1432",
+      "role": "user"
     }
   ],
   "tb_album": [

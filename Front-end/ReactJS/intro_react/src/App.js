@@ -7,6 +7,7 @@ import RegisterPage from './pages/registerPage';
 import {Route} from 'react-router-dom'
 import viewImg from './pages/viewImg';
 import Cards from './components/cards';
+import Login from './pages/login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" component={LandingPage} exact/>
       <Route path="/register" component={RegisterPage}/>
       <Route path="/view" component={viewImg}/>
+      <Route path="/login" component={Login}/>
       </div>
   );
 }

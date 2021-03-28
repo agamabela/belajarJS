@@ -24,6 +24,9 @@ class Navbar extends React.Component {
                   <a className="nav-link" href="#">Pricing</a>
                 </li>
                 <li className="nav-item">
+                  <Link className="nav-link" to="/login">Login<span className="sr-only">(current)</span></Link>
+                </li>
+                <li className="nav-item">
                   <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
               </ul>
