@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -31,9 +32,20 @@ class Navbar extends React.Component {
                 </li>
               </ul>
             </div>
+            <div>
+              <h3 className="text-white m-1">
+              Selamat datang, {this.props.username}
+              </h3>
+            </div>
           </nav>
         );
     }
 }
- 
-export default Navbar;
+ //fungsi untuk mengambil data dari reducer
+ const mapStateToProps = (state)=>{
+   return {
+     username: state.authReducer.username,
+     role: state.authReducer.role
+   }
+ }
+export default connect(mapStateToProps)(Navbar);

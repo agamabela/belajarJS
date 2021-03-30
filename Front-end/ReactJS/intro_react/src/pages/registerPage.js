@@ -7,7 +7,8 @@ class RegisterPage extends React.Component {
         super(props);
         this.state = {
             dataUser: [],
-            selectedIdx: null
+            selectedIdx: null,
+            passwordType: "password",
         }
     }
 
@@ -44,6 +45,15 @@ class RegisterPage extends React.Component {
         })
             .then(res => this.getDataUser()).catch(err => console.log(err))
     }
+    onBtShowPass=()=>{
+        let {passShow, passwordType} = this.state
+        if(passwordType == 'password'){
+            this.setState({passwordType:'password', passShow:'Hidden'})
+        }else{
+            this.setState({passwordType:'password', passShow:'Show'})
+        }
+
+    }
 
     printData = () => {
         return this.state.dataUser.map((item, index) => {
@@ -51,10 +61,13 @@ class RegisterPage extends React.Component {
                 return <tr>
                     <td>{index + 1}</td>
                     <th><input className="form-control" type="text" ref={elemen => this.newUsername = elemen} placeholder="Username" defaultValue={item.username} /></th>
-                    <th><input className="form-control" type="text" ref={elemen => this.newPassword = elemen} placeholder="Password" defaultValue={item.password} /></th>
+                    <th><input className="form-control" type={this.state.passwordType} ref={elemen => this.newPassword = elemen} placeholder="Password" defaultValue={item.password} /></th>
                     <th><select className="form-control" type="text" ref={elemen => this.newRole = elemen} placeholder="Password" defaultValue={item.role}>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
+                        <div>
+                            <button></button>
+                        </div>
                     </select></th>
                     <th><button type="button" className="btn btn-outline-warning" onClick={()=> this.onBtnSave(item.id)}>Save</button>
                         <button type="button" className="btn btn-outline-danger" onClick={() => this.setState({ selectedIdx: null })}>Cancel</button></th>

@@ -1,19 +1,15 @@
 import React, { cloneElement, Component } from 'react';
 import Cards from '../components/cards';
 import axios from 'axios';
+import {getAlbum} from '../actions'
+import {connect} from 'react-redux'
 
 
 class LandingPage extends Component {
     //untuk menyimpan data State
     constructor(props) {
         super(props);
-        this.state = {
-            dataAlbum: [
-
-            ]
-            
-
-        }
+        this.state = {}
 
 
 
@@ -30,16 +26,17 @@ class LandingPage extends Component {
         axios.get('http://127.0.0.1:4000/tb_album')
             .then((res) => {
                 console.log("respon api get:", res.data)
-                this.setState({ dataAlbum: res.data })
+               // this.setState({ dataAlbum: res.data })
+            this.props.getAlbum(res.data)
             })
+
             .catch((err) => {
                 console.log(err)
             })
     }
     printCard = () => {
-        let { dataAlbum } = this.state
+        let { dataAlbum } = this.props
         return dataAlbum.map((item, index) => {
-            console.log(item)
             return <Cards title={item.title} description={item.description} image={item.img} data={item} />
 
         })
@@ -104,5 +101,11 @@ class LandingPage extends Component {
         );
     }
 }
+const mapStateToProps=(state) =>{
+    console.log('cek data', state.albumReducer.dataAlbum)
+    return {
+        dataAlbum: state.albumReducer.dataAlbum
+    }
+}
 
-export default LandingPage;
+export default connect(mapStateToProps,{getAlbum}) (LandingPage);

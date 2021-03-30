@@ -23,6 +23,12 @@
       "password": "test",
       "role": "admin",
       "id": 4
+    },
+    {
+      "username": "test",
+      "password": "apa",
+      "role": "user",
+      "id": 5
     }
   ],
   "tb_album": [
