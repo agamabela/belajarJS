@@ -1,0 +1,197 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@mail.com",
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "bela",
+      "email": "bela@mail.com",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "username": "belalal",
+      "email": "belaala@mail.com",
+      "password": "",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "username": "deya",
+      "email": "deya@mail.com",
+      "password": "apaini",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "username": "bela",
+      "email": "",
+      "password": "test123",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "username": "bela",
+      "email": "",
+      "password": "test123",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "username": "test",
+      "email": "",
+      "password": "345",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "username": "test",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 8
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 10
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 11
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 12
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 13
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 14
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 15
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 16
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 17
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 18
+    },
+    {
+      "username": "apa ini",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 19
+    },
+    {
+      "username": "deya",
+      "email": "",
+      "password": "",
+      "role": "user",
+      "id": 20
+    }
+  ],
+  "products": [
+    {
+      "nama": "IDALINNEA",
+      "deskripsi": " Ritsleting yang tersembunyi membuat sarung mudah dilepas.  Sarung bantal dengan tampilan cermin karena memiliki pola yang sama di kedua sisi.  Katun adalah bahan alami lembut dan mudah dirawat yang dapat Anda cuci dengan mesin.",
+      "brand": "IKEA",
+      "kategori": "Sofaaa",
+      "harga": 79000,
+      "stok": [
+        {
+          "id": null,
+          "type": "M",
+          "qty": 10
+        },
+        {
+          "id": null,
+          "type": "L",
+          "qty": 12
+        }
+      ],
+      "images": [
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/107/0810720_PE771385_S4.jpg",
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/107/0810719_PE771386_S4.jpg"
+      ],
+      "id": 1
+    },
+    {
+      "nama": "HAUGA",
+      "deskripsi": "Mudah untuk menyembunyikan kabel dan stopkontak tapi tetap dapat dijangkau dengan jalur kabel di bagian belakang.",
+      "brand": "IKEA",
+      "kategori": "Meja",
+      "harga": 1599000,
+      "stok": [
+        {
+          "id": null,
+          "type": "Black",
+          "qty": 12
+        },
+        {
+          "id": null,
+          "type": "Krem",
+          "qty": 10
+        }
+      ],
+      "images": [
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/557/0955765_PE804101_S4.jpg",
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/594/0959497_PE806037_S4.jpg",
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/727/0972709_PE811745_S4.jpg",
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/557/0955706_PE803970_S4.jpg"
+      ],
+      "id": 2
+    }
+  ],
+  "cart": []
+}
