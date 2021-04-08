@@ -3,8 +3,12 @@ import CardProduct from '../components/cardProducts';
 import { connect } from 'react-redux'
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    CardTitle, CardSubtitle, Button,Input
 } from 'reactstrap';
+import Slider from 'react-slick'
+import {URL_API} from '../helper'
+import axios from 'axios';
+import {getProductAction} from '../actions'
 class ProductsPage extends React.Component {
     constructor(props) {
         super(props);
@@ -34,11 +38,32 @@ class ProductsPage extends React.Component {
             })
         }
     }
+    handleSort=()=>{
+        console.log(this.sortProduct.value,this.sortProduct.value.split('-'))
+        let field=this.sortProduct.value.split('-')[0]
+        let sortType=this.sortProduct.value.split('-')[1]
+
+        axios.get(URL_API+`/products?_sort=${field}&_order=${sortType}`)
+        .then(res=>{
+            this.props.getProductAction(res.data)
+        }).catch (err=>{
+console.log(err)
+        })
+    }
 
     render() {
+        
         return (
-            <div className="row">
+           <div className="container">
+                <Input type="select" style={{width:'10vw', float:'right'}}placeholder="Sort Product" onChange={this.handleSort}innerRef={el=>this.sortProduct=el} >
+                    <option value="harga-asc">Harga Asc</option>
+                    <option value="harga-desc">Harga Desc</option>
+                    <option value="nama-asc">A-Z</option>
+                    <option value="nama-desc">Z-A</option>
+            </Input>
+            <div className="container row">
                 {this.printProducts()}
+            </div>
             </div>
         );
     }
@@ -50,4 +75,4 @@ const mapToProps = ({ productReducers }) => {
     }
 }
 
-export default connect(mapToProps)(ProductsPage);
+export default connect(mapToProps,{ getProductAction })(ProductsPage);

@@ -78,8 +78,7 @@ class ProductManagement extends React.Component {
         let sortType = this.sortProduct.value.split('-')[1]
         axios.get(URL_API + `/products?_sort=${field}&_order=${sortType}`)
             .then(res => {
-                console.log(field, sortType, res.data)
-                this.setState({ data: res.data })
+              this.props.getProductAction(res.data)
             })
             .catch(err => {
                 console.log(err)

@@ -191,6 +191,26 @@
         "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/557/0955706_PE803970_S4.jpg"
       ],
       "id": 2
+    },
+    {
+      "nama": "Kursi kayu",
+      "deskripsi": "Apa aja",
+      "brand": "IKLAN",
+      "kategori": "Kursi",
+      "harga": 30000,
+      "stok": [
+        {
+          "id": null,
+          "type": "M",
+          "qty": 13
+        }
+      ],
+      "images": [
+        "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/977/0797757_PE767007_S5.jpg",
+        "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/9/9/350bb848-44f7-4dd4-8b41-e63023dfed5d.jpg",
+        "https://kedaimebeljati.com/wp-content/uploads/2017/10/kursi-makan-minimalis-simple.jpg"
+      ],
+      "id": 3
     }
   ],
   "cart": []

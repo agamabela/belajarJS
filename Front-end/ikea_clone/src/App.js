@@ -24,7 +24,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.reLogin()
-    this.getProducts()
+    this.getProductAction()
   }
 
   reLogin = () => {
