@@ -2,12 +2,12 @@ import axios from 'axios';
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { URL_API } from '../helper'
-class ModalEditProduct extends React.Component {
+class ModalProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stock: props.detailProduk.stock,
-            images: props.detailProduk.images,
+            stock: [],
+            images: []
         }
     }
 
@@ -23,8 +23,8 @@ class ModalEditProduct extends React.Component {
             images: this.state.images
         }).then(res => {
             console.log(res.data)
-            alert('Add Product Success')
             this.props.getData()
+            alert('Add Product Success')
         }).catch(err => {
             console.log(err)
         })
@@ -36,21 +36,21 @@ class ModalEditProduct extends React.Component {
         this.setState({ stock: this.state.stock })
     }
 
+    // menambah penampung data image pada state.images
     onBtAddImages = () => {
         this.state.images.push("")
         this.setState({ images: this.state.images })
     }
 
     printStock = () => {
-        let { stock } = this.state
-        if (stock) {
-            return stock.map((item, index) => {
+        if (this.state.stock.length > 0) {
+            return this.state.stock.map((item, index) => {
                 return <Row>
                     <Col>
-                        <Input type="text" defaultValue={item.type} placeholder={`Type-${index + 1}`} onChange={(e) => this.handleType(e, index)} />
+                        <Input type="text" placeholder={`Type-${index + 1}`} onChange={(e) => this.handleType(e, index)} />
                     </Col>
                     <Col>
-                        <Input type="number" defaultValue={item.qty} placeholder={`Stock-${index + 1}`} onChange={(e) => this.handleStock(e, index)} />
+                        <Input type="number" placeholder={`Stock-${index + 1}`} onChange={(e) => this.handleStock(e, index)} />
                     </Col>
                     <Col>
                         <a onClick={() => this.onBtDeleteStock(index)} style={{ cursor: 'pointer' }}>Delete</a>
@@ -60,100 +60,71 @@ class ModalEditProduct extends React.Component {
         }
     }
 
+    // render element input form image
     printImages = () => {
-        let { images } = this.state
-        if (images) {
-            return images.map((item, index) => {
-                return <Input type="text" defaultValue={item} placeholder={`Images-${index + 1}`} onChange={(e) => this.handleImages(e, index)} />
+        if (this.state.images.length > 0) {
+            return this.state.images.map((item, index) => {
+                return <Input type="text" placeholder={`Images-${index + 1}`} 
+                onChange={(e) => this.handleImages(e, index)} />
             })
         }
     }
 
     onBtDeleteStock = (index) => {
-        this.props.detailProduk.stock.splice(index, 1)
+        this.state.stock.splice(index, 1)
         this.setState({ stock: this.state.stock })
     }
 
+    // Untuk set value kedalam state.images
     handleImages = (e, index) => {
-        this.props.detailProduk.images[index] = e.target.value
+        this.state.images[index] = e.target.value
     }
 
     handleType = (e, index) => {
-        this.props.detailProduk.stock[index].type = e.target.value
+        this.state.stock[index].type = e.target.value
     }
 
     handleStock = (e, index) => {
-        this.props.detailProduk.stock[index].qty = parseInt(e.target.value)
+        this.state.stock[index].qty = parseInt(e.target.value)
     }
 
     onBtCancel = () => {
-        // this.setState({ stock: [], images: [] })
+        this.setState({ stock: [], images: [] })
         // fungsi untuk close modal
         this.props.btClose()
     }
 
-    onBtSave = () => {
-        console.log(
-            {
-                nama: this.inNama.value,
-                deskripsi: this.inDeskripsi.value,
-                brand: this.inBrand.value,
-                kategori: this.inKategori.value,
-                harga: parseInt(this.inHarga.value),
-                stock: this.props.detailProduk.stock,
-                images: this.props.detailProduk.images
-            }
-        )
-        axios.patch(URL_API + `/products/${this.props.detailProduk.id}`, {
-            nama: this.inNama.value,
-            deskripsi: this.inDeskripsi.value,
-            brand: this.inBrand.value,
-            kategori: this.inKategori.value,
-            harga: parseInt(this.inHarga.value),
-            stock: this.props.detailProduk.stock,
-            images: this.props.detailProduk.images
-        })
-            .then(res => {
-                console.log(res.data)
-                this.props.getData()
-                this.props.btClose()
-            }).catch(err => {
-                console.log(err)
-            })
-    }
-
     render() {
-        console.log("detailProduk", this.props.detailProduk)
-        let { nama, deskripsi, brand, kategori, harga } = this.props.detailProduk
+        console.log('ModalOpen', this.props.modalOpen)
         return (
             <Modal isOpen={this.props.modalOpen} toggle={this.props.btClose} >
                 <ModalHeader toggle={this.props.btClose}>Add Product</ModalHeader>
                 <ModalBody>
                     <FormGroup>
                         <Label for="textNama">Nama Product</Label>
-                        <Input type="text" id="textNama" defaultValue={nama} innerRef={elemen => this.inNama = elemen} />
+                        <Input type="text" id="textNama" innerRef={elemen => this.inNama = elemen} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="textDes">Deskripsi</Label>
-                        <Input type="text" defaultValue={deskripsi} id="textDes" innerRef={elemen => this.inDeskripsi = elemen} />
+                        <Input type="text" id="textDes" innerRef={elemen => this.inDeskripsi = elemen} />
                     </FormGroup>
                     <Row>
                         <Col>
                             <FormGroup>
                                 <Label for="textBrand">Brand</Label>
-                                <Input type="text" defaultValue={brand} id="textBrand" innerRef={elemen => this.inBrand = elemen} />
+                                <Input type="text" id="textBrand" innerRef={elemen => this.inBrand = elemen} />
                             </FormGroup>
                         </Col>
                         <Col>
                             <FormGroup>
                                 <Label for="textKategori">Kategori</Label>
-                                <Input type="text" defaultValue={kategori} id="textKategori" innerRef={elemen => this.inKategori = elemen} />
+                                <Input type="text" id="textKategori" innerRef={elemen => this.inKategori = elemen} />
                             </FormGroup>
                         </Col>
                     </Row>
                     <FormGroup>
                         <Label for="textHarga">Harga</Label>
-                        <Input type="number" defaultValue={harga} id="textHarga" innerRef={elemen => this.inHarga = elemen} />
+                        <Input type="number" id="textHarga" innerRef={elemen => this.inHarga = elemen} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Stock</Label>
@@ -167,7 +138,7 @@ class ModalEditProduct extends React.Component {
                     </FormGroup>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="button" color="primary" onClick={this.onBtSave}>Save</Button>{' '}
+                    <Button type="button" color="primary" onClick={this.onBtAdd}>Submit</Button>{' '}
                     <Button color="secondary" onClick={this.onBtCancel}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -175,4 +146,4 @@ class ModalEditProduct extends React.Component {
     }
 }
 
-export default ModalEditProduct;
+export default ModalProduct;

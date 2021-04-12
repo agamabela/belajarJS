@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Button, Table, Badge, Input } from 'reactstrap';
-import ModalProduct from '../components/modalProduct';
-import ModalEditProduct from '../components/modalEditProduct';
+import ModalAdd from '../components/ModalAdd';
+import ModalEditProduct from '../components/ModalEditProduct';
 import { URL_API } from '../helper'
 import { connect } from 'react-redux'
 import { getProductAction } from '../actions'
@@ -28,15 +28,15 @@ class ProductManagement extends React.Component {
     //     // this.getData()
     // }
 
-    // getData = () => {
-    //     axios.get(URL_API + '/products')
-    //         .then(res => {
-    //             this.props.getProductAction(res.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }
+    getData = () => {
+        axios.get(URL_API + '/products')
+            .then(res => {
+                this.props.getProductAction(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     printProduk = () => {
         return this.props.products.map((item, index) => {
@@ -78,9 +78,7 @@ class ProductManagement extends React.Component {
         let sortType = this.sortProduct.value.split('-')[1]
         axios.get(URL_API + `/products?_sort=${field}&_order=${sortType}`)
             .then(res => {
-                console.log(field, sortType, res.data)
-                this.setState({ data: res.data })
-                // this.props.getProductAction(res.data)
+              this.props.getProductAction(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -104,10 +102,10 @@ class ProductManagement extends React.Component {
                 </div>
                 {/* Modal untuk detail product */}
                 <ModalEditProduct modalOpen={this.state.modalEditOpen} detailProduk={this.state.detailProduk}
-                    btClose={() => this.setState({ modalEditOpen: !this.state.modalEditOpen })} getData={this.props.getProductAction} />
+                    btClose={() => this.setState({ modalEditOpen: !this.state.modalEditOpen })} getData={this.getData} />
                 {/* Modal untuk add product */}
-                <ModalProduct modalOpen={this.state.modalOpen}
-                    btClose={() => this.setState({ modalOpen: !this.state.modalOpen })} getData={this.props.getProductAction} />
+                <ModalAdd modalOpen={this.state.modalOpen}
+                    btClose={() => this.setState({ modalOpen: !this.state.modalOpen })} getData={this.getData} />
                 <Table>
                     <thead>
                         <tr>

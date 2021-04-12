@@ -12,8 +12,6 @@ import { connect } from 'react-redux'
 import ProductManagement from './pages/productManagement';
 import NotFound from './pages/notFound';
 import ProductsPage from './pages/productsPage';
-import ProductDetails from './pages/productDetails';
-import CartPage from './pages/cartPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -57,8 +55,6 @@ class App extends React.Component {
           <Route path="/" component={LandingPage} exact />
           <Route path="/auth" component={AuthPage} />
           <Route path="/products" component={ProductsPage} />
-          <Route path="/product-details" component={ProductDetails}/>
-          <Route path="/cart" component={CartPage}/>
           {
             this.props.role == "admin" &&
             <>
@@ -75,9 +71,9 @@ class App extends React.Component {
 // inline condition
 // 1. condition ? return A : return B, sama dengan kita buat if(condition){}else{}
 // 2. condition && return, sama dengan kita buat if(condition){}
-const mapStateToProps = ({ authReducers }) => {
+const mapStateToProps = ({ authReducer }) => {
   return {
-    role: authReducers.role
+    role: authReducer.role
   }
 }
 

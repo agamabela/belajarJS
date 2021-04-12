@@ -62,7 +62,7 @@ class ProductManagement extends React.Component {
                 <td>{item.brand}</td>
                 <td>{item.kategori}</td>
                 <td>{
-                    item.stok.map((item, index) => {
+                    item.stock.map((item, index) => {
                         return <h5>{item.type} : <Badge color={item.qty >= 12 ? "success" : "warning"}>{item.qty}</Badge></h5>
                     })
                 }</td>
@@ -80,7 +80,6 @@ class ProductManagement extends React.Component {
             .then(res => {
                 console.log(field, sortType, res.data)
                 this.setState({ data: res.data })
-                // this.props.getProductAction(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -93,7 +92,7 @@ class ProductManagement extends React.Component {
             <div className="p-2">
                 <h3 className="text-center">Produk Management</h3>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Input style={{ width: '20%' }} type="select" onChange={this.handleSort} placeholder="sort"
+                    <Input style={{ width: '20%' }} type="select" onClick={this.handleSort} placeholder="sort"
                         innerRef={el => this.sortProduct = el}>
                         <option value="nama-asc">Nama Asc</option>
                         <option value="nama-desc">Nama Desc</option>

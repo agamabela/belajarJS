@@ -18,3 +18,10 @@ export const keepLogin=(data)=>{
         payload:data
     }
 }
+
+export const updateCart=(data)=>{
+    return {
+        type:"UPDATE_CART",
+        payload:data
+    }
+}

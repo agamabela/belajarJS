@@ -16,22 +16,6 @@ class AuthPage extends React.Component {
             alertType: '',
         }
     }
-    handlePassword = () => {
-        console.log(this.inRegisPassword.value)
-
-        let huruf = /[a-zA-Z]/
-        let numb = /[0-9]/
-        
-        if (huruf.test(this.inRegisPassword.value) || numb.test(this.inRegisPassword.value)) {
-            if (huruf.test(this.inRegisPassword.value) && numb.test(this.inRegisPassword.value)) {
-                console.log("Huruf dan Angka")
-            } else if (huruf.test(this.inRegisPassword.value)) {
-                console.log("Hanya huruf")
-            } else if (numb.test(this.inRegisPassword.value)) {
-                console.log("Hanya angka")
-            }
-        }
-    }
 
     onBtRegis = () => {
         let username = this.inUsername.value
@@ -82,11 +66,22 @@ class AuthPage extends React.Component {
     }
 
     onBtLogin = () => {
-        this.props.authLogin(this.inEmail.value, this.inPassword.value)
+        axios.get(URL_API + `/users?email=${this.inEmail.value}&password=${this.inPassword.value}`)
+            .then(res => {
+                if (res.data.length > 0) {
+                    this.props.authLogin(res.data[0])
+                    // menyimpan data token kedalam browser
+                    localStorage.setItem('tkn_id', res.data[0].id)
+                    this.setState({ redirect: true })
+                }
+            })
+            .catch(err => {
+                console.log("Login Error :", err)
+            })
     }
 
     render() {
-        if (this.props.id) {
+        if (this.state.redirect) {
             return <Redirect to="/" />
         }
         return (
@@ -122,7 +117,7 @@ class AuthPage extends React.Component {
                         </FormGroup>
                         <FormGroup>
                             <Label for="textPassword">Password</Label>
-                            <Input type={this.state.passType} onChange={this.handlePassword()} id="textPassword" innerRef={elemen => this.inRegisPassword = elemen} />
+                            <Input type={this.state.passType} id="textPassword" innerRef={elemen => this.inRegisPassword = elemen} />
                         </FormGroup>
                         <FormGroup>
                             <Label for="textConfPassword"> Confirmation Password</Label>
@@ -136,10 +131,4 @@ class AuthPage extends React.Component {
     }
 }
 
-const mapToProps = ({ authReducer }) => {
-    return {
-        id: authReducer.id
-    }
-}
-
-export default connect(mapToProps, { authLogin })(AuthPage);
+export default connect(null, { authLogin })(AuthPage);

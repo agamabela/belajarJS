@@ -2,19 +2,14 @@ const INITIAL_STATE = {
     id: null,
     username: '',
     email: '',
-    role: '',
-    cart:[]
+    role: ''
 }
 
-export const authReducers = (state = INITIAL_STATE, action) => {
+export const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
             delete action.payload.password
             return { ...state, ...action.payload }
-        case "UPDATE_CART":
-            return{
-                ...state,cart:action.payload
-            }
         case "LOGOUT":
             return INITIAL_STATE
         default:

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CardProduct from '../components/cardProducts';
 import { connect } from 'react-redux'
@@ -9,7 +8,6 @@ import {
 import axios from 'axios';
 import { URL_API } from '../helper'
 import { getProductAction, sortProducts } from '../actions'
-import { Link } from 'react-router-dom'
 
 class ProductsPage extends React.Component {
     constructor(props) {
@@ -19,7 +17,7 @@ class ProductsPage extends React.Component {
             key: true
         }
     }
-
+    
     // untuk menjalankan fungsi ketika ada perubahan data pada state dan juga props
     componentDidUpdate() {
         if (this.props.products.length > 0 && this.state.key) {
@@ -32,21 +30,19 @@ class ProductsPage extends React.Component {
         return this.state.data.map((item, index) => {
             return <div className="col-md-3 mt-2">
                 <Card style={{ border: 'none' }}>
-                    <Link to={`/product-details?id=${item.id}`} style={{textDecoration:'none',color:'black'}}>
-                        <CardImg top width="100%" src={item.images[0]} alt="Card image cap" />
-                        <CardBody>
-                            <CardTitle tag="h5" style={{ fontWeight: 'bolder' }}>{item.nama}</CardTitle>
-                            <CardSubtitle style={{ fontSize: '14px' }} className="mb-2 text-muted">{item.kategori}</CardSubtitle>
-                            <CardText tag="h5" style={{ fontWeight: 'bolder' }}>Rp. {item.harga.toLocaleString()}</CardText>
-                            <Button type="button" outline
-                                style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <span class="material-icons">
-                                    visibility
+                    <CardImg top width="100%" src={item.images[0]} alt="Card image cap" />
+                    <CardBody>
+                        <CardTitle tag="h5" style={{ fontWeight: 'bolder' }}>{item.nama}</CardTitle>
+                        <CardSubtitle style={{ fontSize: '14px' }} className="mb-2 text-muted">{item.kategori}</CardSubtitle>
+                        <CardText tag="h5" style={{ fontWeight: 'bolder' }}>Rp. {item.harga.toLocaleString()}</CardText>
+                        <Button type="button" outline
+                            style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <span class="material-icons">
+                                visibility
                         </span>
-                                <span>Lihat Sekilas</span>
-                            </Button>
-                        </CardBody>
-                    </Link>
+                            <span>Lihat Sekilas</span>
+                        </Button>
+                    </CardBody>
                 </Card>
             </div>
         })

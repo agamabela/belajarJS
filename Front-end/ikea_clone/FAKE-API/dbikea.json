@@ -5,6 +5,7 @@
       "username": "admin",
       "email": "admin@mail.com",
       "password": "1234",
+      "cart": [],
       "role": "admin"
     },
     {
@@ -12,12 +13,14 @@
       "username": "bela",
       "email": "bela@mail.com",
       "password": "1234",
+      "cart": [],
       "role": "user"
     },
     {
       "username": "belalal",
       "email": "belaala@mail.com",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 3
     },
@@ -25,6 +28,16 @@
       "username": "deya",
       "email": "deya@mail.com",
       "password": "apaini",
+      "cart": [
+        {
+          "qty": 2,
+          "nama": "Kursi kayuu",
+          "type": "M",
+          "harga": 30000,
+          "subTotal": 60000,
+          "image": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/977/0797757_PE767007_S5.jpg"
+        }
+      ],
       "role": "user",
       "id": 4
     },
@@ -32,6 +45,7 @@
       "username": "bela",
       "email": "",
       "password": "test123",
+      "cart": [],
       "role": "user",
       "id": 5
     },
@@ -39,6 +53,7 @@
       "username": "bela",
       "email": "",
       "password": "test123",
+      "cart": [],
       "role": "user",
       "id": 6
     },
@@ -46,6 +61,7 @@
       "username": "test",
       "email": "",
       "password": "345",
+      "cart": [],
       "role": "user",
       "id": 7
     },
@@ -53,6 +69,7 @@
       "username": "test",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 8
     },
@@ -60,6 +77,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 9
     },
@@ -67,6 +85,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 10
     },
@@ -74,6 +93,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 11
     },
@@ -81,6 +101,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 12
     },
@@ -88,6 +109,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 13
     },
@@ -95,6 +117,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 14
     },
@@ -102,6 +125,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 15
     },
@@ -109,6 +133,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 16
     },
@@ -116,6 +141,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 17
     },
@@ -123,6 +149,7 @@
       "username": "",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 18
     },
@@ -130,6 +157,7 @@
       "username": "apa ini",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 19
     },
@@ -137,6 +165,7 @@
       "username": "deya",
       "email": "",
       "password": "",
+      "cart": [],
       "role": "user",
       "id": 20
     }
@@ -193,7 +222,7 @@
       "id": 2
     },
     {
-      "nama": "Kursi kayu",
+      "nama": "Kursi kayuu",
       "deskripsi": "Apa aja",
       "brand": "IKLAN",
       "kategori": "Kursi",

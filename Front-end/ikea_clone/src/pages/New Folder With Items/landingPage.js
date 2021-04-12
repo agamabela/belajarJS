@@ -1,22 +1,24 @@
 import React from 'react';
-import {
-    Container, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Input
-} from 'reactstrap';
-import CarousleComp from '../components/carousle';
-import { connect } from 'react-redux'
+import {Container,Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button} from 'reactstrap';
+import CarouselComp from '../components/carousel';
+import {connect} from 'react-redux'
+import { productReducers } from '../reducers/productReducers';
 import Slider from 'react-slick'
+
+
+
 class LandingPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {  }
     }
 
     printProducts = () => {
         if (this.props.products.length > 0) {
             return this.props.products.map((item, index) => {
-                return <div >
-                    <Card style={{ border: 'none' }}>
+                return <div>
+                    <Card>
                         <CardImg top width="100%" src={item.images[0]} alt="Card image cap" />
                         <CardBody>
                             <CardTitle tag="h5" style={{ fontWeight: 'bolder' }}>{item.nama}</CardTitle>
@@ -36,29 +38,32 @@ class LandingPage extends React.Component {
         }
     }
 
-    render() {
-        const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 3,
+   
+    render() { 
+        const settings ={
+            dots:true,
+            infinite:true,
+            speed:500,
+            slidesToShow:2,
+            slidesToScroll:2,
         }
-        return (
+        return ( 
             <Container fluid>
-                <CarousleComp />
+                
+                {/* <h1>Landing Page IKEA Clone</h1> */}
+                <CarouselComp/>
                 <Slider {...settings}>
                     {this.printProducts()}
+
                 </Slider>
+
             </Container>
-        );
+         );
     }
 }
-
-const mapToProps = ({ productReducers }) => {
-    return {
+const mapToProps= ({productReducers})=>{
+    return{
         products: productReducers.products_list
     }
 }
-
-export default connect(mapToProps)(LandingPage);
+export default connect (mapToProps, {productReducers})(LandingPage);

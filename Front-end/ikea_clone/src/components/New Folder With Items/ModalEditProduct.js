@@ -6,20 +6,20 @@ class ModalEditProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stock: props.detailProduk.stock,
-            images: props.detailProduk.images,
+            stok: [],
+            images: [],
         }
     }
 
     onBtAdd = () => {
-        console.log(this.state.stock)
+        console.log(this.state.stok)
         axios.post(URL_API + '/products', {
             nama: this.inNama.value,
             deskripsi: this.inDeskripsi.value,
             brand: this.inBrand.value,
             kategori: this.inKategori.value,
             harga: parseInt(this.inHarga.value),
-            stock: this.state.stock,
+            srok: this.state.stok,
             images: this.state.images
         }).then(res => {
             console.log(res.data)
@@ -32,8 +32,8 @@ class ModalEditProduct extends React.Component {
 
     onBtAddStock = () => {
         // let tempStock = [...this.state.stock]
-        this.state.stock.push({ id: null, type: null, qty: null })
-        this.setState({ stock: this.state.stock })
+        this.state.stok.push({ id: null, type: null, qty: null })
+        this.setState({ stok: this.state.stok })
     }
 
     onBtAddImages = () => {
@@ -42,9 +42,9 @@ class ModalEditProduct extends React.Component {
     }
 
     printStock = () => {
-        let { stock } = this.state
-        if (stock) {
-            return stock.map((item, index) => {
+        let { stok } = this.props.detailProduk
+        if (stok) {
+            return stok.map((item, index) => {
                 return <Row>
                     <Col>
                         <Input type="text" defaultValue={item.type} placeholder={`Type-${index + 1}`} onChange={(e) => this.handleType(e, index)} />
@@ -61,7 +61,7 @@ class ModalEditProduct extends React.Component {
     }
 
     printImages = () => {
-        let { images } = this.state
+        let { images } = this.props.detailProduk
         if (images) {
             return images.map((item, index) => {
                 return <Input type="text" defaultValue={item} placeholder={`Images-${index + 1}`} onChange={(e) => this.handleImages(e, index)} />
@@ -70,8 +70,8 @@ class ModalEditProduct extends React.Component {
     }
 
     onBtDeleteStock = (index) => {
-        this.props.detailProduk.stock.splice(index, 1)
-        this.setState({ stock: this.state.stock })
+        this.props.detailProduk.stok.splice(index, 1)
+        this.setState({ stok: this.state.stok })
     }
 
     handleImages = (e, index) => {
@@ -79,11 +79,11 @@ class ModalEditProduct extends React.Component {
     }
 
     handleType = (e, index) => {
-        this.props.detailProduk.stock[index].type = e.target.value
+        this.props.detailProduk.stok[index].type = e.target.value
     }
 
     handleStock = (e, index) => {
-        this.props.detailProduk.stock[index].qty = parseInt(e.target.value)
+        this.props.detailProduk.stok[index].qty = parseInt(e.target.value)
     }
 
     onBtCancel = () => {
@@ -100,7 +100,7 @@ class ModalEditProduct extends React.Component {
                 brand: this.inBrand.value,
                 kategori: this.inKategori.value,
                 harga: parseInt(this.inHarga.value),
-                stock: this.props.detailProduk.stock,
+                stok: this.props.detailProduk.stok,
                 images: this.props.detailProduk.images
             }
         )
@@ -110,7 +110,7 @@ class ModalEditProduct extends React.Component {
             brand: this.inBrand.value,
             kategori: this.inKategori.value,
             harga: parseInt(this.inHarga.value),
-            stock: this.props.detailProduk.stock,
+            stok: this.props.detailProduk.stok,
             images: this.props.detailProduk.images
         })
             .then(res => {

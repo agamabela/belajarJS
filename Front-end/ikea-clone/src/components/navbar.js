@@ -143,10 +143,10 @@ class NavbarComp extends React.Component {
     }
 }
 
-const mapStateToProps = ({ authReducers, productReducers }) => {
+const mapStateToProps = ({ authReducer, productReducers }) => {
     return {
-        username: authReducers.username,
-        role: authReducers.role,
+        username: authReducer.username,
+        role: authReducer.role,
         products: productReducers.products_list
     }
 }
